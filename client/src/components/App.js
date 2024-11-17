@@ -1,35 +1,36 @@
-
+import { useState } from 'react'
 import '../styles/App.css'; // link to path
-
-import { createBrowserRouter, RouterProvider} from 'react-router-dom' // use dom library to create route
-
+import { AuthProvider } from './Auth';
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom"; 
 
 /** import components */
 import Main from './Main'
 import Quiz from './Quiz';
 import Result from './Result';
 import { CheckUserExist } from '../helper/helper';
+import Register from './Register'
+import Login from './Login'
+import Home from './Home'
+import Profile from "./Profile";
 
-/** react routes */
-const router = createBrowserRouter([ // pages for different links
-  {
-    path: '/', // root route
-    element : <Main></Main>
-  }, 
-  {
-    path: '/quiz', 
-    element : <CheckUserExist><Quiz></Quiz></CheckUserExist>
-  }, 
-  {
-    path: '/result', 
-    element : <CheckUserExist><Result></Result></CheckUserExist>
-  }, 
-])
+
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home></Home>}/>
+          <Route path='/contest' element={<Main></Main>}/>
+          <Route path='/contest/quiz' element={<CheckUserExist><Quiz></Quiz></CheckUserExist>}/>
+          <Route path='/contest/result' element={<CheckUserExist><Result></Result></CheckUserExist>}/>
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/profile/:username' element={<Profile/>}/>
+        </Routes>
+      </BrowserRouter>
+      </AuthProvider>
     </>
   );
 }

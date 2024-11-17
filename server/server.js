@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import { config } from 'dotenv'
 import router from './router/route.js';
-
+import EmployeeModel from "./models/Employee.js";
 
 
 /** import connection file */
@@ -49,4 +49,49 @@ connect().then(() => {
     }
 }).catch(error => {
     console.log(error);
+})
+
+
+/** login code */
+app.post("/login", (req, res) => {
+    const {name, password} = req.body;
+    EmployeeModel.findOne({name : name})
+    .then(user => {
+        if(user) {
+            if(user.password === password){
+                res.json({
+                    status: "Success",
+                    name: user.name,
+                    email: user.email 
+                });
+            }else{
+                res.json("The password is incorrect")
+            }
+        }else{
+            res.json("No record existed")
+        }
+    })
+})
+
+app.post("/register", (req, res) => {
+    EmployeeModel.create(req.body)
+    .then(employees => res.json(employees))
+    .catch(err => res.json(err))
+})
+
+/** get user info code */
+app.post("/info", (req, res) => {
+    const {name} = req.body;
+    EmployeeModel.findOne({name : name})
+    .then(user => {
+        if(user) {
+            res.json({
+                status: "Success",
+                name: user.name,
+                email: user.email 
+            });
+        }else{
+            res.json("No record existed")
+        }
+    })
 })

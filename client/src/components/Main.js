@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import '../styles/Main.css'
 import { useDispatch } from 'react-redux'
 import { setUserId } from '../redux/result_reducer'
+import { useAuth } from './Auth'; 
 export default function Main(){
-    
+
         const inputRef = useRef(null) 
-        
+        const { auth } = useAuth();
         const dispatch = useDispatch()
         /** auth: only allow user to start quiz if they put in username */
         function startQuiz(){
@@ -25,13 +26,8 @@ export default function Main(){
                 <li>Have fun!</li>
             </ol>
 
-            <form id="form">
-                {/* stores username in variable */}
-                <input ref = {inputRef} className = "userid" type="text" placeholder='Username*' /> 
-            </form>
-
             <div className='start'>
-                <Link className = 'btn' to = {'quiz'} onClick = {startQuiz}>Start Quiz</Link> {/* link to quiz root when pressed */}
+                <Link className = 'btn' to = {'/quiz'} onClick = {startQuiz}>Start Quiz</Link> {/* link to quiz root when pressed */}
             </div>
         </div>
         

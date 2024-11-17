@@ -51,7 +51,7 @@ export default function Quiz(){
 
     /** finish exam after the last question */
     if(result.length && result.length >= queue.length){
-        return <Navigate to='/result' replace="true"></Navigate>
+        return <Navigate to='/contest/result' replace="true"></Navigate>
     }
     return (
         <div className='container'>

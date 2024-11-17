@@ -1,0 +1,57 @@
+/* Main container styles */
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f7f7f7; /* Neutral background */
+  }
+  
+  /* Form container styles */
+  .form-container {
+    background-color: #ffffff; /* White background for the form */
+    padding: 2rem; /* Padding for form container */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 400px; /* Responsive max width */
+  }
+  
+  /* Label styles */
+  label {
+    display: block; /* Ensure labels are above input */
+    margin-bottom: 0.5rem; /* Space between label and input */
+    font-weight: bold; /* Highlight labels */
+  }
+  
+  /* Input styles */
+  input {
+    width: 100%; /* Full width */
+    padding: 0.5rem; /* Padding inside input */
+    margin-bottom: 1.5rem; /* Space below each input */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box; /* Consistent box model */
+  }
+  
+  /* Buttons */
+  .btn {
+    border: none;
+    border-radius: 5px;
+    padding: 0.75rem; /* Larger padding for better clickability */
+  }
+  
+  .btn-success {
+    background-color: #28a745; /* Keep green, or change to preferred */
+    color: #fff;
+  }
+  
+  .btn-default {
+    background-color: #ddd; /* Lighter background */
+    color: #333; /* Darker text */
+  }
+  
+  .btn-default:hover {
+    background-color: #bbb; /* Darker hover */
+  }
+  
