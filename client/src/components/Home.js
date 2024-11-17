@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css'; 
 import Profile from './Profile';
 import { useAuth } from './Auth';
 function Home(){
 
+  
+    const { auth, user, logout } = useAuth(); // Access auth and user state
+    const navigate = useNavigate();
 
-    const { auth, user } = useAuth(); // Access auth and user state
-
+    const handleLogout = () => {
+        logout(); // Call the logout function from context
+        navigate('/'); // Redirect to home page after logout
+    };
     return (
         <div className="front-page-container">
           <header className="hero-section">
@@ -16,7 +22,8 @@ function Home(){
                 {auth &&
                     <>
                         <p>Welcome back, {user?.name}!</p>
-                        <Link to={`/profile/${user?.name}`}>Profile</Link> 
+                        <Link to={`/profile/${user?.name}`} className="btn btn-primary">{user?.name}</Link>
+                        <button onClick={handleLogout} className="btn btn-secondary">Logout</button> {/* Logout button */} 
                     </>
                 }
                 {!auth &&
